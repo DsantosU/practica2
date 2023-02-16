@@ -1,0 +1,49 @@
+div.login-page {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  height: 100vh;
+
+  .login-banner {
+    background-color: lightgrey;
+  }
+
+  div.login-form {
+    margin: auto;
+    margin-top: 150px;
+    width: 70%;
+  }
+}
+
+.text-link {
+  color: #138deb;
+}
+
+.primary-button {
+  background-color: #138deb;
+  color: white;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  div.login-page {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    height: 100vh;
+    position: relative;
+
+    .login-banner {
+      background-color: lightgrey;
+      position: absolute;
+      height: 100vh;
+      z-index: 1;
+    }
+  }
+
+  div.login-form {
+    margin: auto;
+    margin-top: 150px;
+    width: 70%;
+
+    z-index: 2;
+  }
+}

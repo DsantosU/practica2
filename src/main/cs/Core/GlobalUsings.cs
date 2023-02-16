@@ -1,0 +1,10 @@
+global using System;
+global using Optional;
+global using Optional.Unsafe;
+global using Triplex.ProtoDomainPrimitives;
+global using Triplex.ProtoDomainPrimitives.Exceptions;
+global using Triplex.ProtoDomainPrimitives.Numerics;
+global using Triplex.ProtoDomainPrimitives.Strings;
+global using Triplex.ProtoDomainPrimitives.Temporal;
+global using Triplex.Validations;
+global using Wepsys.Core;
