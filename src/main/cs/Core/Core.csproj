@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <IsTestProject>false</IsTestProject>
+    <Nullable>enable</Nullable>
+
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+
+    <RootNamespace>RI.Novus.Core</RootNamespace>
+    <AssemblyName>$(RootNamespace)</AssemblyName>
+
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Optional" Version="4.0.0" />
+    <PackageReference Include="System.Collections" Version="4.0.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Triplex.ProtoDomainPrimitives">
+      <HintPath>..\..\..\..\dlls\Triplex.ProtoDomainPrimitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Triplex.Validations">
+      <HintPath>..\..\..\..\dlls\Triplex.Validations.dll</HintPath>
+    </Reference>
+    <Reference Include="Wepsys.Core">
+      <HintPath>..\..\..\..\dlls\Wepsys.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,54 @@
+$iconSize:15px;
+
+.home-page {
+  display: grid;
+  grid-template-rows: 1fr 10fr;
+  width: 100vw;
+  height: 100vh;
+
+  .header {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo {
+      margin-left: 50px;
+      width: 100px;
+      height: 80px;
+    }
+
+    .logged-user-section {
+      padding-right: 100px;
+
+      .bell {
+        width: $iconSize;
+        height: $iconSize;
+        margin-right: 10px;
+      }
+      .user {
+        width: $iconSize;
+        height: $iconSize;
+        margin-right: 10px;
+      }
+
+      .user-name{
+         color: #8388A8;
+      }
+    }
+  }
+
+  .page-content {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    background-color: #f0f4fa;
+
+    .sidebar {
+      background-color: #19375a;
+    }
+
+    .content {
+      background-color: #f0f4fa;
+    }
+  }
+}
