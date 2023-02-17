@@ -1,7 +1,8 @@
-﻿using Optional.Linq;
-using Optional.Unsafe;
+﻿
 using System.ComponentModel.DataAnnotations;
 using Triplex.Validations;
+
+
 namespace Persistence.Models
 {
     /// <summary>
@@ -9,6 +10,13 @@ namespace Persistence.Models
     /// </summary>
     public sealed class ImmovableOwner
     {
+        public ImmovableOwner(Guid id, string name, int codia, string identificationNumber) {
+            Id = id;
+            Name = name;
+            Codia = codia;
+      
+            IdentificationNumber= identificationNumber;
+        }
 
         /// <summary>
         /// Surrogate key.
@@ -46,12 +54,15 @@ namespace Persistence.Models
         /// </summary>
         /// 
 
+        [Required]
         [Range(minimum: 1, maximum: int.MaxValue)]
         public int Codia { get; set; }
 
         /// <summary>
         /// Creation Date of immovable codia
         /// </summary>
+        [Required]
+        [DataType(DataType.Date)]
         public DateTimeOffset CreationDate { get; set; } = DateTimeOffset.Now;
 
         /// <summary>
@@ -81,18 +92,15 @@ namespace Persistence.Models
         {
             Arguments.NotNull(immovableOwner, nameof(immovableOwner));
 
-            var result = new ImmovableOwner
-            {
-                Id = immovableOwner.Id.Value,
-                Name = immovableOwner.Name.AsPrimitive,
-                Codia = immovableOwner.Codia.AsPrimitive,
-                ImmovableProperties = immovableOwner.ImmovableProperties.Select(ImmovableProperty.FromEntity).ToList(),
-                CreationDate = immovableOwner.CreationDate.AsPrimitive,
-                IdentificationNumber = immovableOwner.IdentificationNumber.AsPrimitive,
+            return new
+            (
+                immovableOwner.Id.Value,
+                immovableOwner.Name.AsPrimitive,
+                immovableOwner.Codia.AsPrimitive,
+                immovableOwner.IdentificationNumber.AsPrimitive
+            );
 
-            };
-
-            return result;
+            
         }
 
 

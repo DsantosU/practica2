@@ -1,5 +1,4 @@
 ﻿using RI.Novus.Core.Immovable.ImmovableProperties;
-using System.Collections.Generic;
 
 namespace RI.Novus.Core.Boundaries.Persistence
 {

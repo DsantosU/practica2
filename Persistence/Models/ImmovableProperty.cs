@@ -1,5 +1,4 @@
 ﻿using Optional.Unsafe;
-using RI.Novus.Core.Immovable.ImmovableProperties;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Triplex.Validations;
@@ -8,6 +7,16 @@ namespace Persistence.Models
 {
     public sealed class ImmovableProperty
     {
+        ImmovableProperty(Guid id, Guid immovableOwnerId, decimal surface, RI.Novus.Core.Immovable.ImmovableProperties.Type type, decimal area, decimal region)
+        {
+            Id = id;
+            ImmovableOwnerId = immovableOwnerId;
+            Surface = surface;
+            Type = type;
+            Area = area;
+            Region = region;
+        }
+
 
         /// <summary>
         /// Surrogate key.
@@ -16,6 +25,10 @@ namespace Persistence.Models
         /// 
         [Key]
         public Guid Id { get; set; }
+
+        /// <summary>
+        /// Immovable Owner Id
+        /// </summary>
 
         public Guid ImmovableOwnerId { get; set; }
 
@@ -37,14 +50,14 @@ namespace Persistence.Models
 
         [Range(0, (double)decimal.MaxValue)]
 
-        public decimal? Area { get; set; }
+        public decimal Area { get; set; }
 
         /// <summary>
         /// Region of immovable property
         /// </summary>
 
         [Range(0, (double)decimal.MaxValue)]
-        public decimal? Region { get; set; }
+        public decimal Region { get; set; }
 
         /// <summary>
         /// Immovable Owner Id
@@ -84,15 +97,15 @@ namespace Persistence.Models
         {
             Arguments.NotNull(immovableProperty, nameof(immovableProperty));
 
-            return new ImmovableProperty
-            {
-                Id = immovableProperty.Id.Value,
-                Surface = immovableProperty.Surface.Value,
-                Type = immovableProperty.Type,
-                ImmovableOwnerId = immovableProperty.ImmovableOwnerId,
-                Region = immovableProperty.Region.HasValue ? immovableProperty.Region.ValueOrFailure().Value : null,
-                Area = immovableProperty.Area.HasValue ? immovableProperty.Area.ValueOrFailure().Value : null
-            };
+            return new (
+            
+                immovableProperty.Id.Value,
+                immovableProperty.ImmovableOwnerId,
+                immovableProperty.Surface.Value,
+                immovableProperty.Type,
+                immovableProperty.Region.ValueOrDefault().Value,
+                immovableProperty.Area.ValueOrDefault().Value
+            );
 
         }
     }

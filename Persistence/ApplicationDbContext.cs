@@ -23,12 +23,11 @@ namespace Persistence
         {
             Arguments.NotNull(modelBuilder, nameof(modelBuilder));
 
-            //modelBuilder.Entity<ImmovableProperty>().HasKey(i => new { i.Id, i.ImmovableOwnerId });
 
             modelBuilder.Entity<ImmovableProperty>()
                 .HasOne(io => io.ImmovableOwner)
                 .WithMany(ip => ip.ImmovableProperties)
-                .HasForeignKey(nameof(ImmovableOwner.Id))
+                .HasForeignKey(nameof(ImmovableProperty.ImmovableOwnerId))
             ;
         }
 

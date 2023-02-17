@@ -1,12 +1,11 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class hdskaljlksa : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,19 +33,24 @@ namespace Persistence.Migrations
                     ImmovableOwnerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Surface = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Type = table.Column<int>(type: "int", nullable: false),
-                    Area = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    Region = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
+                    Area = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Region = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ImmovableProperties", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ImmovableProperties_ImmovableOwners_Id",
-                        column: x => x.Id,
+                        name: "FK_ImmovableProperties_ImmovableOwners_ImmovableOwnerId",
+                        column: x => x.ImmovableOwnerId,
                         principalTable: "ImmovableOwners",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ImmovableProperties_ImmovableOwnerId",
+                table: "ImmovableProperties",
+                column: "ImmovableOwnerId");
         }
 
         /// <inheritdoc />

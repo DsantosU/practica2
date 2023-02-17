@@ -1,7 +1,6 @@
 ﻿using RI.Novus.Core.Boundaries.Persistence;
 using RI.Novus.Core.Immovable.ImmovableOwners;
 using RI.Novus.Core.Immovable.ImmovableProperties;
-using System.Collections.ObjectModel;
 
 namespace RI.Novus.Core.Facts.Immovable.ImmovableOwnersFacts.ImmovableOwnerFacts;
 

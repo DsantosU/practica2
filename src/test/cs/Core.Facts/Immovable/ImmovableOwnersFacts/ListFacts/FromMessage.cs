@@ -1,5 +1,4 @@
-﻿using RI.Novus.Core.Immovable.ImmovableOwners;
-using RI.Novus.Core.Immovable.ImmovableProperties;
+﻿using RI.Novus.Core.Immovable.ImmovableProperties;
 
 namespace RI.Novus.Core.Facts.Immovable.ImmovableOwnersFacts.ListFacts;
 

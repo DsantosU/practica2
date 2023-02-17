@@ -12,15 +12,15 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230214010442_initial")]
-    partial class initial
+    [Migration("20230217014050_hdskaljlksa")]
+    partial class hdskaljlksa
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.2")
+                .HasAnnotation("ProductVersion", "7.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -55,15 +55,16 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Persistence.Models.ImmovableProperty", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal?>("Area")
+                    b.Property<decimal>("Area")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<Guid>("ImmovableOwnerId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal?>("Region")
+                    b.Property<decimal>("Region")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Surface")
@@ -74,6 +75,8 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ImmovableOwnerId");
+
                     b.ToTable("ImmovableProperties");
                 });
 
@@ -81,7 +84,7 @@ namespace Persistence.Migrations
                 {
                     b.HasOne("Persistence.Models.ImmovableOwner", "ImmovableOwner")
                         .WithMany("ImmovableProperties")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("ImmovableOwnerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

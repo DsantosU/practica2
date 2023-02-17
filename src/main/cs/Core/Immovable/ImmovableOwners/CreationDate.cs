@@ -9,7 +9,7 @@
         /// <summary>Creates a new instance with the system current time as UTC.</summary>
         /// <returns></returns>
         public static CreationDate Now()
-            => new(new PastOrPresentTimestamp(DateTimeOffset.UtcNow));
+            => CreationDate.From(DateTimeOffset.UtcNow);
 
         /// <summary>Shortcut for create a created</summary>
         /// <param name="dateTimeOffset"></param>

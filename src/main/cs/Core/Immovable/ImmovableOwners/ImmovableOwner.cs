@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using RI.Novus.Core.Asegurados.Asegurado;
-using RI.Novus.Core.Boundaries.Persistence;
+﻿using RI.Novus.Core.Boundaries.Persistence;
 using RI.Novus.Core.Immovable.ImmovableProperties;
 using System.Collections.Generic;
 

@@ -1,9 +1,6 @@
 ﻿using Triplex.Validations;
-using Persistence.Models;
 using ImmovableProperty = RI.Novus.Core.Immovable.ImmovableProperties.ImmovableProperty;
 using Optional.Unsafe;
-using System.Collections.Generic;
-using RI.Novus.Core.Immovable.ImmovableProperties;
 
 namespace WebApiExample.ViewModels
 {
@@ -25,7 +22,7 @@ namespace WebApiExample.ViewModels
         public ImmovableProperty ToEntity()
         {
             return new ImmovableProperty.Builder()
-                   .WithId(RI.Novus.Core.Immovable.ImmovableProperties.Id.From(Id))
+                   .WithId(RI.Novus.Core.Immovable.ImmovableProperties.Id.Generate())
                    .WithSurface(RI.Novus.Core.Immovable.ImmovableProperties.Surface.From(Surface))
                    .WithType(Type)
                    .WithRegion(RI.Novus.Core.Immovable.ImmovableProperties.Region.From((decimal)Region))

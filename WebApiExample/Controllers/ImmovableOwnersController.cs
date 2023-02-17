@@ -1,10 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Persistence;
-using Persistence.Models;
-using RI.Novus.Core.Asegurados.Asegurado;
 using RI.Novus.Core.Boundaries.Persistence;
-using RI.Novus.Core.Immovable.ImmovableOwners;
-using RI.Novus.Core.Immovable.ImmovableProperties;
 using WebApiExample.ViewModels;
 
 namespace WebApiExample.Controllers
@@ -28,9 +23,7 @@ namespace WebApiExample.Controllers
         public IActionResult GetImmovablesOwners()
         {
             return Ok(_ImmovableOwnerRepository.GetImmovableOwners().Select(ImmovableOwnerModel.FromEntity));
-            /*ICollection <ImmovableOwner> immovableOwners = _ImmovableOwnerRepository.GetImmovableOwners();
 
-            return Ok(immovableOwners.Select(a => ImmovableOwnerModel.FromEntity(a)).ToList());*/
         }
 
 

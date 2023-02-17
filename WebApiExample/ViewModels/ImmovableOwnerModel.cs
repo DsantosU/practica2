@@ -1,8 +1,6 @@
 ﻿using Optional.Unsafe;
 using Persistence.Models;
 using RI.Novus.Core.Immovable.ImmovableOwners;
-using System.Collections;
-using System.ComponentModel.DataAnnotations;
 using Triplex.Validations;
 
 namespace WebApiExample.ViewModels
@@ -82,7 +80,7 @@ namespace WebApiExample.ViewModels
                     Type = x.Type,
                     Area = x.Area.ValueOrDefault().Value,
                     Region = x.Region.ValueOrDefault().Value,
-                    ImmovableOwnerId= x.Id.Value,
+                    ImmovableOwnerId= x.ImmovableOwnerId,
                 }),
                 CreationDate = immovableOwner.CreationDate.AsPrimitive,
                 IdentificationNumber = immovableOwner.IdentificationNumber.AsPrimitive,

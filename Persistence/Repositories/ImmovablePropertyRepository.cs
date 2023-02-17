@@ -1,7 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Persistence.Models;
+﻿using Persistence.Models;
 using RI.Novus.Core.Boundaries.Persistence;
-using RI.Novus.Core.Immovable.ImmovableProperties;
 using Triplex.Validations;
 using ImmovableProperty = Persistence.Models.ImmovableProperty;
 

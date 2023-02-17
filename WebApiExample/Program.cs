@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Persistence.Repositories;
 using RI.Novus.Core.Boundaries.Persistence;
-using WebApiExample;
 
 var builder = WebApplication.CreateBuilder(args);
 

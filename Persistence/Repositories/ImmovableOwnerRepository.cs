@@ -1,13 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Optional.Unsafe;
-using Persistence.Models;
-using RI.Novus.Core.Asegurados.Asegurado;
 using RI.Novus.Core.Boundaries.Persistence;
-using RI.Novus.Core.Immovable.ImmovableOwners;
-using RI.Novus.Core.Immovable.ImmovableProperties;
-using System.Diagnostics;
-using System.IdentityModel.Tokens.Jwt;
 using Triplex.Validations;
+using ImmovableOwner = RI.Novus.Core.Immovable.ImmovableOwners.ImmovableOwner;
 using ImmovableOwnerDbModel = Persistence.Models.ImmovableOwner;
 using ImmovableProperty = Persistence.Models.ImmovableProperty;
 
@@ -48,28 +42,41 @@ namespace Persistence.Repositories
         /// Get immovable owners method
         /// </summary>
         /// <returns></returns>
-        public IList<RI.Novus.Core.Immovable.ImmovableOwners.ImmovableOwner> GetImmovableOwners()
+        public IList<ImmovableOwner> GetImmovableOwners()
         {
 
-            List<ImmovableOwnerDbModel> dbModels = Context.ImmovableOwners.AsNoTracking().Include(o => o.ImmovableProperties).ToList();
+            List<ImmovableOwner> owners = new List<ImmovableOwner>();
+            List<ImmovableOwnerDbModel> ownersDatabaseModel = Context.ImmovableOwners.AsNoTracking().Include(x => x.ImmovableProperties).ToList();
 
-            return dbModels.Select(dbModel => dbModel.ToEntity()).ToList();
+            foreach (var i in ownersDatabaseModel)
+            {
+                owners.Add(i.ToEntity());
+            }
+
+            return owners;
         }
 
         /// <summary>
         /// save immovable owner method
         /// </summary>
         /// <param name="immovableOwner"></param>
-        void IImmovableOwnersRepository.SaveImmovableOwner(RI.Novus.Core.Immovable.ImmovableOwners.ImmovableOwner immovableOwner)
+        void IImmovableOwnersRepository.SaveImmovableOwner(ImmovableOwner immovableOwner)
         {
             Arguments.NotNull(immovableOwner, nameof(immovableOwner));
-            
-            Context.ImmovableOwners.AddRange(ImmovableOwnerDbModel.FromEntity(immovableOwner));
+
+            ImmovableOwnerDbModel owners = ImmovableOwnerDbModel.FromEntity(immovableOwner);
+            Context.ImmovableOwners.Add(owners);
+            Context.ImmovableProperties.AddRange(immovableOwner.ImmovableProperties.Select(ImmovableProperty.FromEntity));
 
             Context.SaveChanges();
 
         }
 
+        /// <summary>
+        /// Delete immovable owner property
+        /// </summary>
+        /// <param name="owner"></param>
+        /// <param name="propertyId"></param>
         public void DeleteProperty(RI.Novus.Core.Immovable.ImmovableOwners.ImmovableOwner owner, Guid propertyId)
         {
             var propertyOwner = ImmovableOwnerDbModel.FromEntity(owner);
